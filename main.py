@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from flask import request
+from controllers.CustomerController import CustomerController
 
 # configuration
 DEBUG = True
@@ -17,7 +18,9 @@ def welcome():
 
 @app.route('/customer/create', methods=['POST'])
 def createCustomerRecord():
-    return jsonify('hello!')
+    request_payload = request.get_json()
+    result = CustomerController(request_payload).create_customer()
+    return jsonify(result)
 
 
 @app.route('/customer/search', methods=['POST'])
