@@ -4,6 +4,12 @@ import re
 class ComplianceChecks:
 
     def __init__(self, payload):
+        """
+        Constructor for the compliance check class
+        Parameters
+        ----------
+        payload : the customer information payload
+        """
         self.payload = payload
         self.CUSTOMER_NAME = "customer_name"
         self.PHONE_NUMBER = "phone_number"
@@ -11,6 +17,13 @@ class ComplianceChecks:
         self.value_flag = True
 
     def check_payload_compliance_for_keys(self):
+        """
+        Method to check the payload for compliance.
+        Returns
+        -------
+        Boolean value to indicate the compliance of keys and values.
+
+        """
 
         if not len(self.payload):
             self.key_flag = False
@@ -45,6 +58,18 @@ class ComplianceChecks:
             return self.regex_value_checks(self.payload, name_regex, phone_regex)
 
     def regex_value_checks(self, each_customer, name_regex, phone_regex):
+        """
+        Method to check the values against the regex
+        Parameters
+        ----------
+        each_customer : customer information object
+        name_regex : regex to match the name
+        phone_regex : regex to match the phone
+
+        Returns
+        -------
+        bool
+        """
 
         if (name_regex.match(str(each_customer.get(self.CUSTOMER_NAME)))) and \
                 (phone_regex.match(str(each_customer.get(self.PHONE_NUMBER)))):
