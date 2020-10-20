@@ -28,7 +28,6 @@ class ComplianceChecks:
                 raise KeyError("When provided with a list of customers, each customer should have customer name and "
                                "phone number")
         self.key_flag = True
-
         return self.key_flag
 
     def check_payload_compliance_for_values(self):

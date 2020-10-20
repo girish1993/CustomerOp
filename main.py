@@ -7,7 +7,6 @@ DEBUG = True
 
 # instantiate the app
 app = Flask(__name__)
-app.config.from_object(__name__)
 
 
 # sanity check route
@@ -19,7 +18,7 @@ def welcome():
 @app.route('/customer/create', methods=['POST'])
 def createCustomerRecord():
     request_payload = request.get_json()
-    result = CustomerController(request_payload).create_customer()
+    result = CustomerController().create_customer(request_payload)
     return jsonify(result)
 
 
@@ -30,8 +29,9 @@ def searchCustomer():
 
 @app.route('/customer/showAll', methods=['GET'])
 def showAllCustomers():
-    return jsonify('hello!')
+    result = CustomerController().fetchAllCustomers()
+    return jsonify(result)
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=DEBUG)
