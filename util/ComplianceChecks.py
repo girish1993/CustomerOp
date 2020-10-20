@@ -1,5 +1,9 @@
 import re
 
+"""
+A Utility class to provide means to test the validity of keys and values in the received payload.
+"""
+
 
 class ComplianceChecks:
 
