@@ -23,6 +23,7 @@ class CustomerController:
         Message : String
             Message to indicate the status of the message
         """
+        # TODO : This has to be moved to the service layer
         self.payload = payload
         self.compliance_tool = ComplianceChecks(self.payload)
         try:
