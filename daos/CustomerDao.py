@@ -29,6 +29,12 @@ class CustomerDao:
             return "The customer wasn't created because of {}".format(str(e))
 
     def fetchAllCustomers(self):
+        """
+        Method to return all the customers in the database
+        Returns
+        -------
+        list of customer records present in the database
+        """
         try:
             self.conn = Connection().get_db_connection()
             cursor = self.conn.cursor()
@@ -36,3 +42,4 @@ class CustomerDao:
             return [dict(row) for row in customer_records]
         except Exception as e:
             return "The customers cannot be fetched because of {}".format(str(e))
+
