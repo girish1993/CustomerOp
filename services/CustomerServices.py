@@ -36,4 +36,8 @@ class CustomerServices:
         -------
         A list of dictionaries where each dictionary is a customer record
         """
-        return CustomerDao().fetchAllCustomers()
+        return CustomerDao().fetch_all_customers()
+
+    @staticmethod
+    def get_customers_by_phone_number(search_phone_number):
+        return CustomerDao().fetch_customers_by_phone_number(search_phone_number)

@@ -22,9 +22,11 @@ def createCustomerRecord():
     return jsonify(result)
 
 
-@app.route('/customer/search', methods=['POST'])
+@app.route('/customer/search', methods=['GET'])
 def searchCustomer():
-    return jsonify('hello!')
+    search_phone_number = request.args.get('phone')
+    result = CustomerController().search_customer_by_phone(search_phone_number)
+    return jsonify(result)
 
 
 @app.route('/customer/showAll', methods=['GET'])

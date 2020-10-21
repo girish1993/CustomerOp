@@ -46,3 +46,13 @@ class CustomerController:
         List of user records as list of Dictionaries.
         """
         return CustomerServices().fetchAllCustomers()
+
+    @staticmethod
+    def search_customer_by_phone(search_phone_number):
+        """
+        Method to search customers in the database by phone number
+        Returns
+        -------
+        A list of customer records with phone number matching the provided query string
+        """
+        return CustomerServices().get_customers_by_phone_number(search_phone_number)
