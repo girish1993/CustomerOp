@@ -1,4 +1,5 @@
 from daos.CustomerDao import CustomerDao
+from util.ComplianceChecks import ComplianceChecks
 
 """
 Service Layer for the Customer DAO
@@ -12,6 +13,7 @@ class CustomerServices:
         Constructor for CustomerServices class
         """
         self.customer_info = None
+        self.compliance_tool = None
 
     def createCustomer(self, payload):
         """
@@ -25,8 +27,19 @@ class CustomerServices:
         Message : String
             the status of the insertion operation
         """
+
         self.customer_info = payload
-        return CustomerDao().insertCustomer(self.customer_info)
+        self.compliance_tool = ComplianceChecks(self.customer_info)
+        try:
+            if self.compliance_tool.check_payload_compliance_for_keys() \
+                    and self.compliance_tool.check_payload_compliance_for_values():
+                return CustomerDao().insertCustomer(self.customer_info)
+            else:
+                return "The customer information is not compliant to the business rules."
+        except BaseException as b:
+            return "Customer could not be created because {}".format(str(b))
+        except KeyError as k:
+            return "Customer could not be created because {}".format(str(k))
 
     @staticmethod
     def fetchAllCustomers():
@@ -40,4 +53,28 @@ class CustomerServices:
 
     @staticmethod
     def get_customers_by_phone_number(search_phone_number):
+        """
+        Pattern searching for customers by their phone number
+        Parameters
+        ----------
+        search_phone_number :
+
+        Returns
+        -------
+
+        """
         return CustomerDao().fetch_customers_by_phone_number(search_phone_number)
+
+    def readCsv_and_insert_into_database(self, path_to_file):
+        """
+        Method to read the csv file and grab the records in the csv
+        Parameters
+        ----------
+        path_to_file : String
+            path to the file
+
+        Returns
+        -------
+        The database operation message.
+        """
+

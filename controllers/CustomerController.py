@@ -8,10 +8,9 @@ class CustomerController:
         """
         Constructor for the Customer Controller class
         """
-        self.payload = None
-        self.compliance_tool = None
 
-    def create_customer(self, payload):
+    @staticmethod
+    def create_customer(payload):
         """
         Method to create customer record in the database
         Parameters
@@ -23,19 +22,7 @@ class CustomerController:
         Message : String
             Message to indicate the status of the message
         """
-        # TODO : This has to be moved to the service layer
-        self.payload = payload
-        self.compliance_tool = ComplianceChecks(self.payload)
-        try:
-            if self.compliance_tool.check_payload_compliance_for_keys() \
-                    and self.compliance_tool.check_payload_compliance_for_values():
-                return CustomerServices().createCustomer(self.payload)
-            else:
-                return "The customer information is not compliant to the business rules."
-        except BaseException as b:
-            return str(b)
-        except KeyError as k:
-            return str(k)
+        return CustomerServices().createCustomer(payload=payload)
 
     @staticmethod
     def fetchAllCustomers():
@@ -56,3 +43,12 @@ class CustomerController:
         A list of customer records with phone number matching the provided query string
         """
         return CustomerServices().get_customers_by_phone_number(search_phone_number)
+
+    def import_customer_csv(self, path_to_file):
+        """
+        Method to import csv data and populate the database with records
+        Returns
+        -------
+
+        """
+        return CustomerServices().readCsv_and_insert_into_database(path_to_file)
