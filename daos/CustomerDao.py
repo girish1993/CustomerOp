@@ -57,7 +57,7 @@ class CustomerDao:
         """
         try:
             self.conn = Connection().get_db_connection()
-            search_str = search_phone_number+"%"
+            search_str = search_phone_number + "%"
             cursor = self.conn.cursor()
             customer_records = cursor.execute("SELECT * FROM customer WHERE phone_number LIKE (?) order by "
                                               "customer_name", (search_str,)).fetchall()
@@ -68,3 +68,24 @@ class CustomerDao:
                 return "No customers present with the given number"
         except Exception as e:
             return "The customers cannot be fetched because of {}".format(str(e))
+
+    def insertManyCustomers(self, file_content):
+        """
+        Method to insert multiple customer records at once.
+        Parameters
+        ----------
+        file_content :  List of customer records
+
+        Returns
+        -------
+        Operation status : String
+        """
+        try:
+            self.conn = Connection().get_db_connection()
+            self.conn.executemany("INSERT INTO customer(phone_number, customer_name) VALUES (?, ?)",
+                                  file_content)
+            self.conn.commit()
+            self.conn.close()
+            return "{} customer records inserted into the database successfully".format(len(file_content))
+        except Exception as e:
+            return "The customers could not be created because of {}".format(str(e))

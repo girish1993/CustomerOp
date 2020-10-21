@@ -33,6 +33,7 @@ class FileOperations:
         """
         if self.is_file_exists():
             self.file_content = pd.read_csv(self.path_to_file)
+            self.file_content["phone_number"] = self.file_content["phone_number"].apply(str)
             return list(self.file_content.to_records(index=False))
         else:
             raise FileNotFoundError("The file 'customer_information.csv' is not found under /data")

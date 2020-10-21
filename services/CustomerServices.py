@@ -1,6 +1,6 @@
 from daos.CustomerDao import CustomerDao
 from util.ComplianceChecks import ComplianceChecks
-
+from util.FileOperations import FileOperations
 """
 Service Layer for the Customer DAO
 """
@@ -65,7 +65,8 @@ class CustomerServices:
         """
         return CustomerDao().fetch_customers_by_phone_number(search_phone_number)
 
-    def readCsv_and_insert_into_database(self, path_to_file):
+    @staticmethod
+    def readCsv_and_insert_into_database(path_to_file):
         """
         Method to read the csv file and grab the records in the csv
         Parameters
@@ -77,4 +78,8 @@ class CustomerServices:
         -------
         The database operation message.
         """
-
+        try:
+            file_content = FileOperations(path_to_file=path_to_file).read_file_content_and_return_records()
+            return CustomerDao().insertManyCustomers(file_content)
+        except FileNotFoundError as f:
+            return "The import didn't work because {}".format(str(f))

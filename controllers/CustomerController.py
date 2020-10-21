@@ -44,7 +44,8 @@ class CustomerController:
         """
         return CustomerServices().get_customers_by_phone_number(search_phone_number)
 
-    def import_customer_csv(self, path_to_file):
+    @staticmethod
+    def import_customer_csv(path_to_file):
         """
         Method to import csv data and populate the database with records
         Returns
