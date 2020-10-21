@@ -1,5 +1,9 @@
 import sqlite3
 
+"""
+A utility class to serve connection to the Database
+"""
+
 
 class Connection:
 
@@ -10,4 +14,3 @@ class Connection:
 
     def get_db_connection(self):
         return self.conn
-
