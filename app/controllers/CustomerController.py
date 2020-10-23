@@ -1,5 +1,4 @@
-from util.ComplianceChecks import ComplianceChecks
-from services.CustomerServices import CustomerServices
+from app.services.CustomerServices import CustomerServices
 
 
 class CustomerController:

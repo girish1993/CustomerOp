@@ -1,6 +1,6 @@
-from daos.CustomerDao import CustomerDao
-from util.ComplianceChecks import ComplianceChecks
-from util.FileOperations import FileOperations
+from app.daos.CustomerDao import CustomerDao
+from app.util.ComplianceChecks import ComplianceChecks
+from app.util.FileOperations import FileOperations
 """
 Service Layer for the Customer DAO
 """

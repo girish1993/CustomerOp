@@ -1,7 +1,7 @@
 import os
 from flask import Flask, jsonify
 from flask import request
-from controllers.CustomerController import CustomerController
+from app.controllers.CustomerController import CustomerController
 
 # configuration
 DEBUG = True
@@ -20,7 +20,7 @@ def welcome():
 @app.route('/customer/create', methods=['POST'])
 def create_customer_record():
     request_payload = request.get_json()
-    result = CustomerController().create_customer(request_payload)
+    result = CustomerController.create_customer(request_payload)
     return jsonify(result)
 
 
@@ -28,14 +28,14 @@ def create_customer_record():
 @app.route('/customer/search', methods=['GET'])
 def search_customer():
     search_phone_number = request.args.get('phone')
-    result = CustomerController().search_customer_by_phone(search_phone_number)
+    result = CustomerController.search_customer_by_phone(search_phone_number)
     return jsonify(result)
 
 
 # End Point to retrieve all customer records in the Database
 @app.route('/customer/showAll', methods=['GET'])
 def show_all_customers():
-    result = CustomerController().fetchAllCustomers()
+    result = CustomerController.fetchAllCustomers()
     return jsonify(result)
 
 
@@ -43,7 +43,7 @@ def show_all_customers():
 @app.route('/customer/importCsv', methods=['GET'])
 def import_customer_csv_data_into_database():
     path_to_file = os.path.join(os.getcwd(), DATA_FILE_PATH)
-    result = CustomerController().import_customer_csv(path_to_file)
+    result = CustomerController.import_customer_csv(path_to_file)
     return jsonify(result)
 
 

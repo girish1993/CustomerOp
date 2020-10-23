@@ -1,4 +1,4 @@
-from util.Connection import Connection
+from app.util.Connection import Connection
 
 
 class CustomerDao:
