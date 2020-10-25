@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+    web:
+        build: .
+        container_name: CustomerOp
+        ports:
+          - "5000:5000"
+        volumes:
+          - import-csv:/code/data/
+
+volumes:
+  import-csv:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /Users/girishbhatta/Documents/Code Challenges/CustomerOp/data/
