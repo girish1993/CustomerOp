@@ -10,6 +10,8 @@ flask = "*"
 flask-sqlalchemy = "*"
 pandas = "*"
 gunicorn = "*"
+pytest = "*"
+coverage = "*"
 
 [requires]
 python_version = "3.8"
