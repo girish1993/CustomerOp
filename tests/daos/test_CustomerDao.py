@@ -4,6 +4,8 @@ from app.daos.CustomerDao import CustomerDao
 import pandas as pd
 import os
 
+TEST_CUSTOMER_DATA_CSV = "tests/daos/test_customer_data.csv"
+
 
 def get_Connection():
     database = "app.db"
@@ -35,7 +37,7 @@ def test_search_customer_by_phone(mocker):
 
 
 def test_insert_many_customers(mocker):
-    path_to_file = os.path.join(os.getcwd(), "tests/daos/test_customer_data.csv")
+    path_to_file = os.path.join(os.getcwd(), TEST_CUSTOMER_DATA_CSV)
     test_data = pd.read_csv(path_to_file)
     test_data["phone_number"] = test_data["phone_number"].apply(str)
     test_data_records = list(test_data.to_records(index=False))
