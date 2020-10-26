@@ -10,3 +10,4 @@ def client():
         exec(open("DBSetup.py").read())
         yield client
 
+    exec(open("DBSetup.py").read())
