@@ -38,12 +38,6 @@ class ComplianceChecks:
             self.key_flag = False
             raise KeyError("Customer information should have customer_name and phone_number")
 
-        if type(self.payload) == list:
-            if not (all(self.CUSTOMER_NAME in each_customer for each_customer in self.payload)) \
-                    and (all(self.PHONE_NUMBER in each_customer for each_customer in self.payload)):
-                self.key_flag = False
-                raise KeyError("When provided with a list of customers, each customer should have customer name and "
-                               "phone number")
         self.key_flag = True
         return self.key_flag
 
@@ -72,7 +66,7 @@ class ComplianceChecks:
 
         Returns
         -------
-        bool
+        Boolean: True if the value is compliant and False otherwise
         """
 
         if (name_regex.match(str(each_customer.get(self.CUSTOMER_NAME)))) and \
