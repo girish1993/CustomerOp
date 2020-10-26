@@ -2,7 +2,6 @@ from app.services.CustomerServices import CustomerServices
 from app.daos.CustomerDao import CustomerDao
 from app.util.ComplianceChecks import ComplianceChecks
 from app.util.FileOperations import FileOperations
-import pandas as pd
 
 INFORMATION_CSV = "/data/customer_information.csv"
 PHONE_NUMBER = "1234"
