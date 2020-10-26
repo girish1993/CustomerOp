@@ -12,6 +12,7 @@ pandas = "*"
 gunicorn = "*"
 pytest = "*"
 coverage = "*"
+pytest-mock = "*"
 
 [requires]
 python_version = "3.8"

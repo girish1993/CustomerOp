@@ -2,6 +2,9 @@
     Test suite to test the routes in the application
 """
 
+import os
+from unittest.mock import patch, MagicMock
+
 
 def test_home_returns_expected_message(client):
     response = client.get('/')
@@ -69,3 +72,13 @@ def test_search_customer_when_customers_are_present(client):
            b'"phone_number":"43434343434"}]\n' == search_response.data
 
 
+def test_importCsv_whenNoFileIsPresent_throwError(client, mocker):
+    path_to_file = os.path.join(os.getcwd(), "customer_information.csv")
+    mocker.patch('app.main.DATA_FILE_PATH', return_value=os.path.join(os.getcwd(), path_to_file))
+    response = client.get('/customer/importCsv')
+    assert b'"The import didn\'t work because The file \'customer_information.csv\' is not found under /data"\n' == response.data
+
+
+def test_importCsv_whenFile_Is_Present_Succeeds(client):
+    response = client.get('/customer/importCsv')
+    assert b'"100 customer records inserted into the database successfully"\n' == response.data
