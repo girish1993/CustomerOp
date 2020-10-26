@@ -1,5 +1,7 @@
 import pandas as pd
 import os
+
+
 class FileOperations:
 
     def __init__(self, path_to_file):
@@ -37,5 +39,3 @@ class FileOperations:
             return list(self.file_content.to_records(index=False))
         else:
             raise FileNotFoundError("The file 'customer_information.csv' is not found under /data")
-
-
