@@ -33,7 +33,9 @@ Based on all these considerations, [**SqlLite3**](https://docs.python.org/3/libr
 of the application.
 
 The following schema was used for the database layer.
----schema
+
+Here ER diagram used for the database layer for the application.<br />
+![alt text](https://github.com/girish1993/CustomerOp/blob/main/docs/ERD.png)
 
 ### Code base
 The code base has been designed from according _MVC-like_ design patter. In this design pattern, we will be making use of
@@ -43,7 +45,8 @@ several layers in the backend which include:
 3. DAO - The layer closest to the Database layer that houses the methods and functions to operate on the database layer
 mostly in the form of CRUD operations.
 
---- dig
+Here is the schematic representation of the code structure in accordance to the design pattern:<br />
+![alt text](https://github.com/girish1993/CustomerOp/blob/main/docs/Design1.png)
 
 The code base has good coverage in terms of unit tests for each of the layers as well.
 
@@ -75,9 +78,8 @@ Steps to run the application:
 **NOTE:** docker and docker-compose must be installed on the local machine. If not, simply run the script using the command
 `sh start.sh` to start the application.
 
-- In case, you want to import a CSV data into the application, input the path of the CSV in `docker-compose.yml` here:
-
--- image
+- In case, you want to import a CSV data into the application, input the path of the CSV in `docker-compose.yml` here: <br />
+![alt text](https://github.com/girish1993/CustomerOp/blob/main/docs/docker_img.png)
 
 - Head over to the browser and type `http://localhost:5000/` This should show the message `Welcome to Customer Management System`
 indicating the application is up and running.
