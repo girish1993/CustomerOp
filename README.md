@@ -74,7 +74,7 @@ Steps to run the application:
 - Clone the repo using the command `git clone https://github.com/girish1993/CustomerOp.git`
 - Navigate to the root directory of the cloned repository on your machine.
 - Run the command to start the application 
-`docker-compose up -d` <br>
+`docker-compose up --build -d` <br>
 **NOTE:** docker and docker-compose must be installed on the local machine. If not, simply run the script using the command
 `sh start.sh` to start the application.
 
