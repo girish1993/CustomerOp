@@ -81,7 +81,7 @@ Steps to run the application:
 - In case, you want to import a CSV data into the application, input the path of the CSV in `docker-compose.yml` here: <br />
 ![alt text](https://github.com/girish1993/CustomerOp/blob/main/docs/docker_img.png)
 
-- Head over to the browser and type `http://localhost:5000/` This should show the message `Welcome to Customer Management System`
+- Head over to the browser and type `http://0.0.0.0:5000/` This should show the message `Welcome to Customer Management System`
 indicating the application is up and running.
 
 **NOTE:** except the API end point `/customer/create` , all the other API end points are GET requests. That is, they can be directly used from the browser.
